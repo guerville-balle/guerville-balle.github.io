@@ -3,11 +3,947 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beun's Personal Webpage</title>
+    <title>Benoît Guerville-Ballé - Researcher in Mathematics</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Design System Variables */
+            --color-white: rgba(255, 255, 255, 1);
+            --color-black: rgba(0, 0, 0, 1);
+            --color-cream-50: rgba(252, 252, 249, 1);
+            --color-cream-100: rgba(255, 255, 253, 1);
+            --color-gray-200: rgba(245, 245, 245, 1);
+            --color-gray-300: rgba(167, 169, 169, 1);
+            --color-gray-400: rgba(119, 124, 124, 1);
+            --color-slate-500: rgba(98, 108, 113, 1);
+            --color-brown-600: rgba(94, 82, 64, 1);
+            --color-charcoal-700: rgba(31, 33, 33, 1);
+            --color-charcoal-800: rgba(38, 40, 40, 1);
+            --color-slate-900: rgba(19, 52, 59, 1);
+            --color-teal-300: rgba(50, 184, 198, 1);
+            --color-teal-400: rgba(45, 166, 178, 1);
+            --color-teal-500: rgba(33, 128, 141, 1);
+            --color-teal-600: rgba(29, 116, 128, 1);
+            --color-teal-700: rgba(26, 104, 115, 1);
+            --color-teal-800: rgba(41, 150, 161, 1);
+            --color-red-400: rgba(255, 84, 89, 1);
+            --color-red-500: rgba(192, 21, 47, 1);
+            --color-orange-400: rgba(230, 129, 97, 1);
+            --color-orange-500: rgba(168, 75, 47, 1);
+
+            /* Custom colors for this site - BRIGHT THEME */
+            --color-purple-primary: #5B21B6;
+            --color-purple-hover: #4C1D95;
+            --color-content-bg: #E5E5E5;
+            --color-bright-bg: #D8D8D8;
+
+            /* Semantic Color Tokens - LIGHT MODE */
+            --color-background: var(--color-content-bg);
+            --color-surface: rgba(255, 255, 255, 0.8);
+            --color-text: #2C2C2C;
+            --color-text-secondary: #4A4A4A;
+            --color-primary: var(--color-purple-primary);
+            --color-primary-hover: var(--color-purple-hover);
+            --color-secondary: rgba(255, 255, 255, 0.08);
+            --color-border: rgba(255, 255, 255, 0.15);
+
+            /* Typography */
+            --font-family-elegant: 'Playfair Display', serif;
+            --font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --font-size-xs: 11px;
+            --font-size-sm: 12px;
+            --font-size-base: 14px;
+            --font-size-lg: 16px;
+            --font-size-xl: 18px;
+            --font-size-2xl: 20px;
+            --font-size-3xl: 24px;
+            --font-size-4xl: 30px;
+            --font-weight-normal: 400;
+            --font-weight-medium: 500;
+            --font-weight-semibold: 600;
+            --font-weight-bold: 700;
+            --line-height-tight: 1.2;
+            --line-height-normal: 1.5;
+
+            /* Spacing */
+            --space-4: 4px;
+            --space-8: 8px;
+            --space-12: 12px;
+            --space-16: 16px;
+            --space-20: 20px;
+            --space-24: 24px;
+            --space-32: 32px;
+            --space-48: 48px;
+            --space-64: 64px;
+
+            /* Border Radius */
+            --radius-sm: 6px;
+            --radius-base: 8px;
+            --radius-lg: 12px;
+
+            /* Shadows */
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family-base);
+            font-size: var(--font-size-base);
+            line-height: var(--line-height-normal);
+            color: var(--color-text);
+            background-color: var(--color-background);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(220, 220, 220, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--color-border);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--space-16) var(--space-24);
+        }
+
+        .nav-brand {
+            font-family: var(--font-family-elegant);
+            font-size: var(--font-size-2xl);
+            font-weight: var(--font-weight-bold);
+            color: var(--color-black);
+            text-decoration: none;
+            letter-spacing: 0.05em;
+            font-style: normal;
+            position: relative;
+        }
+
+        .nav-brand::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, var(--color-primary), transparent);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: var(--space-32);
+        }
+
+        .nav-menu a {
+            color: var(--color-text);
+            text-decoration: none;
+            font-family: var(--font-family-elegant);
+            font-weight: var(--font-weight-medium);
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-menu a:hover {
+            color: var(--color-primary);
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--color-primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        /* Mobile menu toggle */
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+        }
+
+        .nav-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--color-text);
+            transition: all 0.3s ease;
+        }
+
+        /* Banner */
+        .banner {
+            height: 300px;
+            max-height: 300px;
+            background: url('banner.jpg') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background-attachment: fixed;
+        }
+
+        /* Main content */
+        .main-content {
+            position: relative;
+            z-index: 2;
+            background: var(--color-content-bg);
+            min-height: 100vh;
+        }
+
+        .content-section {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: var(--space-64) var(--space-24);
+            background: transparent;
+            margin-bottom: var(--space-32);
+            position: relative;
+        }
+
+        .section-title {
+            font-family: var(--font-family-elegant);
+            font-size: var(--font-size-3xl);
+            font-weight: var(--font-weight-bold);
+            color: var(--color-primary);
+            margin-bottom: var(--space-32);
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--color-primary);
+        }
+
+        /* About section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: var(--space-48);
+            align-items: start;
+        }
+
+        .profile-image {
+            width: 100%;
+            max-width: 280px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .about-text {
+            font-size: var(--font-size-lg);
+            line-height: 1.7;
+            color: var(--color-text);
+            background: rgba(255, 255, 255, 0.8);
+            padding: var(--space-24);
+            border-radius: var(--radius-base);
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-info {
+            margin-top: var(--space-32);
+            padding: var(--space-24);
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: var(--radius-base);
+            border-left: 4px solid var(--color-primary);
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-info h3 {
+            font-family: var(--font-family-elegant);
+            color: var(--color-primary);
+            margin-bottom: var(--space-16);
+        }
+
+        .contact-info p {
+            margin-bottom: var(--space-8);
+        }
+
+        .contact-info a {
+            color: var(--color-primary);
+            text-decoration: none;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        /* Social links */
+        .social-links {
+            display: flex;
+            gap: var(--space-16);
+            margin-top: var(--space-24);
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-8);
+            padding: var(--space-12) var(--space-16);
+            background: var(--color-primary);
+            color: white;
+            text-decoration: none;
+            border-radius: var(--radius-base);
+            font-weight: var(--font-weight-medium);
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: var(--color-primary-hover);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Publications */
+        .publications-grid {
+            display: grid;
+            gap: var(--space-24);
+        }
+
+        .publication-item {
+            background: rgba(255, 255, 255, 0.9);
+            padding: var(--space-24);
+            border-radius: var(--radius-lg);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid var(--color-primary);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .publication-item:hover {
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .publication-header {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-12);
+            margin-bottom: var(--space-12);
+            justify-content: flex-start;
+        }
+
+        .publication-number {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background: var(--color-primary);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            font-weight: var(--font-weight-bold);
+            flex-shrink: 0;
+        }
+
+        .publication-title {
+            font-family: var(--font-family-elegant);
+            font-size: var(--font-size-lg);
+            font-weight: var(--font-weight-semibold);
+            color: #000000 !important;
+            margin: 0;
+            line-height: var(--line-height-tight);
+            text-align: left !important;
+        }
+
+        .publication-authors {
+            color: var(--color-text-secondary);
+            margin-bottom: var(--space-8);
+            font-weight: var(--font-weight-medium);
+        }
+
+        .publication-journal {
+            color: var(--color-black);
+            font-weight: var(--font-weight-semibold);
+            margin-bottom: var(--space-16);
+        }
+
+        .abstract-toggle {
+            background: none;
+            border: none;
+            color: var(--color-primary);
+            cursor: pointer;
+            font-size: var(--font-size-sm);
+            font-weight: var(--font-weight-medium);
+            text-decoration: underline;
+            padding: 0;
+        }
+
+        .abstract-toggle:hover {
+            color: var(--color-primary-hover);
+        }
+
+        .abstract {
+            margin-top: var(--space-16);
+            padding: var(--space-16);
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: var(--radius-base);
+            font-style: italic;
+            line-height: 1.6;
+            display: none;
+            backdrop-filter: blur(5px);
+        }
+
+        .abstract.show {
+            display: block;
+        }
+
+        /* Preprints section */
+        .preprints-section {
+            margin-top: var(--space-48);
+        }
+
+        .preprints-section h3 {
+            font-family: var(--font-family-elegant);
+            font-size: var(--font-size-2xl);
+            color: var(--color-primary);
+            margin-bottom: var(--space-24);
+            text-align: center;
+        }
+
+        /* Theses */
+        .thesis-title-link {
+            color: var(--color-primary);
+            text-decoration: none;
+            font-weight: var(--font-weight-semibold);
+            transition: all 0.3s ease;
+        }
+
+        .thesis-title-link:hover {
+            color: var(--color-primary-hover);
+            text-decoration: underline;
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: rgba(220, 220, 220, 0.98);
+                flex-direction: column;
+                align-items: center;
+                justify-content: start;
+                padding-top: var(--space-48);
+                transition: left 0.3s ease;
+                backdrop-filter: blur(10px);
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-toggle {
+                display: flex;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: var(--space-32);
+                text-align: center;
+            }
+
+            .content-section {
+                margin-left: var(--space-16);
+                margin-right: var(--space-16);
+                padding: var(--space-32) var(--space-16);
+            }
+
+            .section-title {
+                font-size: var(--font-size-2xl);
+            }
+
+            .nav-brand {
+                font-size: var(--font-size-lg);
+            }
+
+            .social-links {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .thesis-links {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .publication-title {
+                text-align: left !important;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Parallax effect for banner */
+        .banner {
+            transform: translate3d(0, 0, 0);
+        }
+    </style>
 </head>
-<body style="font-family: Arial, sans-serif; text-align: center; margin-top: 100px;">
-    <h1>Welcome to My New Personal Webpage</h1>
-    <p>This is my new personal webpage.</p>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#personal" class="nav-brand">Benoît Guerville-Ballé</a>
+            <div class="nav-toggle" id="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="#personal">Personal Information</a></li>
+                <li><a href="#publications">Publications</a></li>
+                <li><a href="#other">Other</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Banner -->
+    <section id="home" class="banner">
+        <!-- Clean banner without text overlay -->
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Personal Information Section -->
+        <section id="personal" class="content-section">
+            <h2 class="section-title">Personal Information</h2>
+            <p> </br> </p>
+            <div class="about-content">
+                <div>
+                    <div class="contact-info" style="margin-top: 0;">
+                        <h3>Research Interests</h3>
+                        <p class="about-text" style="background: none; padding: 0; margin-bottom: var(--space-24);">
+                            My research focuses on algebraic topology, particularly hyperplane arrangements and their topological properties. I study fundamental groups, linking invariants, and moduli spaces of line arrangements, exploring connections between combinatorial structures and topological invariants.
+                        </p>
+                    </div>
+                    <div class="contact-info">
+                        <h3>Contact Information</h3>
+                        <p><strong>Address:</strong><br>
+                        Matematica, Università di Sassari,<br>
+                        via Vienna 2, 07100 Sassari, Italy</p>
+                        <p><strong>Email:</strong> benoit.guerville-balle(at)math.cnrs.fr</p>
+                        <p><strong>Email:</strong> baguerville(at)uniss.it</p>
+                    </div>
+                </div>
+                <div style="align-self: flex-start;">
+                    <img src="identite.jpeg" alt="Benoît Guerville-Ballé" class="profile-image" style="margin-top: 0;">
+                    <div class="social-links">
+                        <a href="http://orcid.org/0000-0001-6401-774X" target="_blank" class="social-link">
+                            ORCID
+                        </a>
+                        <a href="https://www.researchgate.net/profile/Benoit-Guerville-Balle" target="_blank" class="social-link">
+                            ResearchGate
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Publications Section -->
+        <section id="publications" class="content-section">
+            <h2 class="section-title">Publications</h2>
+            
+            <!-- Preprints Section -->
+            <div class="preprints-section">
+                <h3 style="font-family: var(--font-family-elegant); font-size: var(--font-size-2xl); color: var(--color-black); margin-bottom: var(--space-32); text-align: left; margin-top: 0;">Preprints</h3>
+                <div class="publications-grid">
+                    <!-- Preprint 17 - NEWEST -->
+                    <div class="publication-item">
+                        <div class="publication-header">
+                            <div class="publication-number">17</div>
+                            <h3 class="publication-title">Zariski pairs of conic-line arrangements with a unique conic</h3>
+                        </div>
+                        <p class="publication-authors">with Shinzo Bannai, Taketo Shirane</p>
+                        <p class="publication-journal">Accepted for publication in Proc. Am. Math. Soc.</p>
+                        <p style="color: var(--color-text-secondary); font-size: var(--font-size-sm); margin-bottom: var(--space-16);">Preprint: arXiv:2410.04969 [math.AG] (2024)</p>
+                        <button class="abstract-toggle" onclick="toggleAbstract(this)">abstract</button>
+                        <div class="abstract">
+                            In this note, we present two pairs of conic-line arrangements admitting a unique conic and that form Zariski pairs, both of degree 9. Their topologies are distinguished using the connected numbers.
+                        </div>
+                    </div>
+
+                    <!-- Preprint 16 -->
+                    <div class="publication-item">
+                        <div class="publication-header">
+                            <div class="publication-number">16</div>
+                            <h3 class="publication-title">On the nonconnectedness of moduli spaces of arrangements, II: construction of nonarithmetic pairs</h3>
+                        </div>
+                        <p class="publication-journal">Accepted for publication in Kyoto J. Math.</p>
+                        <p style="color: var(--color-text-secondary); font-size: var(--font-size-sm); margin-bottom: var(--space-16);">Preprint: arXiv:2409.18022 [math.AG] (2024)</p>
+                        <button class="abstract-toggle" onclick="toggleAbstract(this)">abstract</button>
+                        <div class="abstract">
+                            Constructing lattice isomorphic line arrangements that are not lattice isotopic is a complex yet fundamental task. In this paper, we focus on such pairs but which are not Galois conjugated, referred to as nonarithmetic pairs. Splitting polygons have been introduced by the author to facilitate the construction of lattice isomorphic arrangements that are not lattice isotopic. Exploiting this structure, we develop two algorithms which produce nonarithmetic pairs: the first generates pairs over a number field, while the second yields pairs over the rationals. Moreover, explicit applications of these algorithms are presented, including one complex, one real, and one rational nonarithmetic pair.
+                        </div>
+                    </div>
+
+                    <!-- Preprint 15 -->
+                    <div class="publication-item">
+                        <div class="publication-header">
+                            <div class="publication-number">15</div>
+                            <h3 class="publication-title">Connectedness and combinatorial interplay in the moduli space of line arrangements</h3>
+                        </div>
+                        <p class="publication-authors">with Juan Viu-Sos</p>
+                        <p class="publication-journal">Accepted for publication in Contemporary Mathematics Proceedings Volume: 115AM. Algebraic and topological interplay of algebraic varieties</p>
+                        <p style="color: var(--color-text-secondary); font-size: var(--font-size-sm); margin-bottom: var(--space-16);">Preprint: arXiv:2309.00322 [math.AG] (2023)</p>
+                        <button class="abstract-toggle" onclick="toggleAbstract(this)">abstract</button>
+                        <div class="abstract">
+                            This paper aims to undertake an exploration of the behavior of the moduli space of line arrangements while establishing its combinatorial interplay with the incidence structure of the arrangement. In the first part, we investigate combinatorial classes of arrangements whose moduli space is connected. We unify the classes of simple and inductively connected arrangements appearing in the literature. Then, we introduce the notion of arrangements with a rigid pencil form. It ensures the connectedness of the moduli space and is less restrictive that the class of C_3 arrangements of simple type. In the last part, we obtain a combinatorial upper bound on the number of connected components of the moduli space. Then, we exhibit examples with an arbitrarily large number of connected components for which this upper bound is sharp.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Publications Section -->
+            <div class="preprints-section">
+                <h3 style="font-family: var(--font-family-elegant); font-size: var(--font-size-2xl); color: var(--color-black); margin-bottom: var(--space-32); text-align: left; margin-top: var(--space-48);">Publications</h3>
+                <div class="publications-grid">
+
+                <!-- Publication 14 -->
+                <div class="publication-item">
+                    <div class="publication-header">
+                        <div class="publication-number">14</div>
+                        <h3 class="publication-title">On the nonconnectedness of moduli spaces of arrangements: the splitting polygon structure</h3>
+                    </div>
+                    <p class="publication-journal">Kyoto J. Math. 65, No. 1, 153-170 (2025)</p>
+                    <p style="color: var(--color-text-secondary); font-size: var(--font-size-sm); margin-bottom: var(--space-16);">DOI: <a href="https://doi.org/10.1215/21562261-2024-0011" target="_blank" style="color: var(--color-text-secondary); text-decoration: none;">10.1215/21562261-2024-0011</a></p>
+                    <button class="abstract-toggle" onclick="toggleAbstract(this)">abstract</button>
+                    <div class="abstract">
+                        Questions that seek to determine whether a hyperplane arrangement property, be it geometric, arithmetic, or topological, is of a combinatorial nature (i.e., determined by the intersection lattice) are abundant in the literature. To tackle such questions and provide a negative answer, one of the most effective methods is to produce a counterexample. To this end, it is essential to know how to construct arrangements that are lattice equivalent. The more different they are, the more efficient it will be. In this paper, we present a method to construct arrangements of complex projective lines that are lattice equivalent but lie in distinct connected components of their moduli space. To illustrate the efficiency of the method, we apply it to reconstruct all the classical examples of arrangements with disconnected moduli spaces: MacLane, Falk-Sturmfels, Nasir-Yoshinaga, and Rybnikov. Moreover, we employ this method to produce novel examples of arrangements of eleven lines whose moduli spaces are formed by four connected components.
+                    </div>
+                </div>
+
+                <!-- Publication 13 -->
+                <div class="publication-item">
+                    <div class="publication-header">
+                        <div class="publication-number">13</div>
+                        <h3 class="publication-title">The loop-linking number of line arrangements</h3>
+                    </div>
+                    <p class="publication-journal">Math. Z. 301, No. 2, 1821-1850 (2022)</p>
+                    <p style="color: var(--color-text-secondary); font-size: var(--font-size-sm); margin-bottom: var(--space-16);">DOI: <a href="https://doi.org/10.1007/s00209-021-02953-x" target="_blank" style="color: var(--color-text-secondary); text-decoration: none;">10.1007/s00209-021-02953-x</a></p>
+                    <button class="abstract-toggle" onclick="toggleAbstract(this)">abstract</button>
+                    <div class="abstract">
+                        We construct an invariant of the embedded topology of a line arrangement which generalizes the I-invariant. This new invariant is called the loop-linking number. We prove that the loop-linking number is an invariant of the homeomorphism type of the arrangement complement. We give two effective methods to compute this invariant, both based on the braid monodromy. As an application, we detect an arithmetic Zariski pair of arrangements with 11 lines whose coefficients are in the 5th cyclotomic field. Furthermore, we also prove that the fundamental groups of their complements are not isomorphic.
+                    </div>
+                </div>
+
+                <!-- Publication 12 -->
+                <div class="publication-item">
+                    <div class="publication-header">
+                        <div class="publication-number">12</div>
+                        <h3 class="publication-title">A linking invariant for algebraic curves</h3>
+                    </div>
+                    <p class="publication-authors">with Jean-Baptiste Meilhan</p>
+                    <p class="publication-journal">Enseign. Math. (2) 66, No. 1-2, 63-81 (2020)</p>
+                    <p style="color: var(--color-text-secondary); font-size: var(--font-size-sm); margin-bottom: var(--space-16);">DOI: <a href="https://doi.org/10.5802/ensmath.3" target="_blank" style="color: var(--color-text-secondary); text-decoration: none;">10.5802/ensmath.3</a></p>
+                    <button class="abstract-toggle" onclick="toggleAbstract(this)">abstract</button>
+                    <div class="abstract">
+                        We construct a topological invariant of algebraic plane curves, which is an adaptation of the linking number of knot theory. This invariant is shown to be a generalization of the I-invariant of line arrangements. We give two practical tools for computing this invariant. As an application, we show that this invariant distinguishes several Zariski pairs.
+                    </div>
+                </div>
+
+                <!-- Publication 11 -->
+                <div class="publication-item">
+                    <div class="publication-header">
+                        <div class="publication-number">11</div>
+                        <h3 class="publication-title">Fundamental groups of real arrangements and torsion in the lower central series quotients</h3>
+                    </div>
+                    <p class="publication-authors">with Enrique Artal Bartolo, Juan Viu-Sos</p>
+                    <p class="publication-journal">Exp. Math. 29, No. 1, 28-35 (2020)</p>
+                    <p style="color: var(--color-text-secondary); font-size: var(--font-size-sm); margin-bottom: var(--space-16);">DOI: <a href="https://doi.org/10.1080/10586458.2018.1428131" target="_blank" style="color: var(--color-text-secondary); text-decoration: none;">10.1080/10586458.2018.1428131</a></p>
+                    <button class="abstract-toggle" onclick="toggleAbstract(this)">abstract</button>
+                    <div class="abstract">
+                        We study torsion elements in the lower central series quotients of fundamental groups of real line arrangement complements. Using computational methods, we provide examples and investigate the relationship between torsion and the combinatorial structure of arrangements.
+                    </div>
+                </div>
+
+                <!-- Publication 10 -->
+                <div class="publication-item">
+                    <div class="publication-header">
+                        <div class="publication-number">10</div>
+                        <h3 class="publication-title">Topology and homotopy of lattice isomorphic arrangements</h3>
+                    </div>
+                    <p class="publication-journal">Proc. Am. Math. Soc. 148, No. 5, 2193-2200 (2020)</p>
+                    <p style="color: var(--color-text-secondary); font-size: var(--font-size-sm); margin-bottom: var(--space-16);">DOI: <a href="https://doi.org/10.1090/proc.14788" target="_blank" style="color: var(--color-text-secondary); text-decoration: none;">10.1090/proc.14788</a></p>
+                    <button class="abstract-toggle" onclick="toggleAbstract(this)">abstract</button>
+                    <div class="abstract">
+                        We investigate when lattice isomorphic arrangements share the same topological and homotopy properties. We provide conditions under which lattice isomorphism implies that the complements are homotopy equivalent, and give counterexamples when these conditions fail.
+                    </div>
+                </div>
+
+                <!-- Publication 9 -->
+                <div class="publication-item">
+                    <div class="publication-header">
+                        <div class="publication-number">9</div>
+                        <h3 class="publication-title">Configurations of points and topology of real line arrangements</h3>
+                    </div>
+                    <p class="publication-authors">with Juan Viu-Sos</p>
+                    <p class="publication-journal">Math. Ann. 374, No. 1-2, 1-35 (2019)</p>
+                    <p style="color: var(--color-text-secondary); font-size: var(--font-size-sm); margin-bottom: var(--space-16);">DOI: <a href="https://doi.org/10.1007/s00208-018-1673-0" target="_blank" style="color: var(--color-text-secondary); text-decoration: none;">10.1007/s00208-018-1673-0</a></p>
+                    <button class="abstract-toggle" onclick="toggleAbstract(this)">abstract</button>
+                    <div class="abstract">
+                        A central question in the study of line arrangements in the complex projective plane is: when does the combinatorial data of the arrangement determine its topological properties? In the present work, we introduce a topological invariant of complexified real line arrangements, called the chamber weight. Using this dual setting, we construct several examples of complexified real line arrangements with the same combinatorial data and different embeddings (i.e. Zariski pairs) which are distinguished by this invariant. We compute explicitly the moduli space of the combinatorics of one example, and prove that it has exactly two connected components.
+                    </div>
+                </div>
+
+                <!-- Publication 8 -->
+                <div class="publication-item">
+                    <div class="publication-header">
+                        <div class="publication-number">8</div>
+                        <h3 class="publication-title">Multiplicativity of the I-invariant and topology of glued arrangements</h3>
+                    </div>
+                    <p class="publication-journal">J. Math. Soc. Japan 70, No. 1, 215-227 (2018)</p>
+                    <p style="color: var(--color-text-secondary); font-size: var(--font-size-sm); margin-bottom: var(--space-16);">DOI: <a href="https://doi.org/10.2969/jmsj/07017022" target="_blank" style="color: var(--color-text-secondary); text-decoration: none;">10.2969/jmsj/07017022</a></p>
+                    <button class="abstract-toggle" onclick="toggleAbstract(this)">abstract</button>
+                    <div class="abstract">
+                        The I-invariant was introduced in previous work with Artal and Florens. Inspired by ideas of Rybnikov, we obtain a multiplicativity theorem of this invariant under the gluing of two arrangements along a triangle. An application of this theorem is to prove that the extended Rybnikov arrangements form ordered Zariski pairs. We extend this method to a particular family of arrangements and thus obtain a method to construct new examples of Zariski pairs.
+                    </div>
+                </div>
+
+                <!-- Publication 7 -->
+                <div class="publication-item">
+                    <div class="publication-header">
+                        <div class="publication-number">7</div>
+                        <h3 class="publication-title">A topological invariant of line arrangements</h3>
+                    </div>
+                    <p class="publication-authors">with Enrique Artal Bartolo, Vincent Florens</p>
+                    <p class="publication-journal">Ann. Sc. Norm. Super. Pisa, Cl. Sci. (5) 17, No. 3, 949-968 (2017)</p>
+                    <p style="color: var(--color-text-secondary); font-size: var(--font-size-sm); margin-bottom: var(--space-16);">DOI: <a href="https://doi.org/10.2422/2036-2145.201702_018" target="_blank" style="color: var(--color-text-secondary); text-decoration: none;">10.2422/2036-2145.201702_018</a></p>
+                    <button class="abstract-toggle" onclick="toggleAbstract(this)">abstract</button>
+                    <div class="abstract">
+                        We introduce a new topological invariant for line arrangements, called the I-invariant, derived from linking numbers in the complement. This invariant is computed using the braid monodromy of the arrangement. We demonstrate its effectiveness by distinguishing several Zariski pairs that could not be separated by previously known invariants.
+                    </div>
+                </div>
+
+                <!-- Publication 6 -->
+                <div class="publication-item">
+                    <div class="publication-header">
+                        <div class="publication-number">6</div>
+                        <h3 class="publication-title">Non-homotopicity of the linking set of algebraic plane curves</h3>
+                    </div>
+                    <p class="publication-authors">with Taketo Shirane</p>
+                    <p class="publication-journal">J. Knot Theory Ramifications 26, No. 13, Article ID 1750089, 13 p. (2017)</p>
+                    <p style="color: var(--color-text-secondary); font-size: var(--font-size-sm); margin-bottom: var(--space-16);">DOI: <a href="https://doi.org/10.1142/S0218216517500894" target="_blank" style="color: var(--color-text-secondary); text-decoration: none;">10.1142/S0218216517500894</a></p>
+                    <button class="abstract-toggle" onclick="toggleAbstract(this)">abstract</button>
+                    <div class="abstract">
+                        We prove that the linking set is not a homotopy invariant for algebraic plane curves, providing counterexamples to previous conjectures. This demonstrates that certain topological information about curve arrangements cannot be detected solely through homotopy-theoretic methods.
+                    </div>
+                </div>
+
+                <!-- Publication 5 -->
+                <div class="publication-item">
+                    <div class="publication-header">
+                        <div class="publication-number">5</div>
+                        <h3 class="publication-title">On the topology of arrangements of a cubic and its inflectional tangents</h3>
+                    </div>
+                    <p class="publication-authors">with Shinzo Bannai, Taketo Shirane, Hiro-O Tokunaga</p>
+                    <p class="publication-journal">Proc. Japan Acad., Ser. A 93, No. 6, 50-53 (2017)</p>
+                    <p style="color: var(--color-text-secondary); font-size: var(--font-size-sm); margin-bottom: var(--space-16);">DOI: <a href="https://doi.org/10.3792/pjaa.93.50" target="_blank" style="color: var(--color-text-secondary); text-decoration: none;">10.3792/pjaa.93.50</a></p>
+                    <button class="abstract-toggle" onclick="toggleAbstract(this)">abstract</button>
+                    <div class="abstract">
+                        We study arrangements formed by a smooth cubic curve and its inflectional tangent lines. We analyze their topological properties and combinatorial structure, establishing connections between the geometry of the cubic and the topology of the arrangement complement.
+                    </div>
+                </div>
+
+                <!-- Publication 4 -->
+                <div class="publication-item">
+                    <div class="publication-header">
+                        <div class="publication-number">4</div>
+                        <h3 class="publication-title">An arithmetic Zariski pair of line arrangements with non-isomorphic fundamental group</h3>
+                    </div>
+                    <p class="publication-authors">with Enrique Artal Bartolo, José Ignacio Cogolludo-Agustín, Miguel Marco-Buzunáriz</p>
+                    <p class="publication-journal">Rev. R. Acad. Cienc. Exactas Fís. Nat., Ser. A Mat., RACSAM 111, No. 2, 377-402 (2017)</p>
+                    <p style="color: var(--color-text-secondary); font-size: var(--font-size-sm); margin-bottom: var(--space-16);">DOI: <a href="https://doi.org/10.1007/s13398-016-0298-y" target="_blank" style="color: var(--color-text-secondary); text-decoration: none;">10.1007/s13398-016-0298-y</a></p>
+                    <button class="abstract-toggle" onclick="toggleAbstract(this)">abstract</button>
+                    <div class="abstract">
+                        We present an arithmetic Zariski pair of line arrangements whose fundamental groups are not isomorphic. This provides the first example of a pair of Galois-conjugate plane curves such that the fundamental groups of their complements are not isomorphic, despite the fact that they have isomorphic profinite completions. This demonstrates that fundamental group information can distinguish arrangements with the same combinatorics.
+                    </div>
+                </div>
+
+                <!-- Publication 3 -->
+                <div class="publication-item">
+                    <div class="publication-header">
+                        <div class="publication-number">3</div>
+                        <h3 class="publication-title">On the minimal degree of logarithmic vector fields of line arrangements</h3>
+                    </div>
+                    <p class="publication-authors">with Juan Viu-Sos</p>
+                    <p class="publication-journal">Monografías Matemáticas "García de Galdeano" 40, 61-66 (2016)</p>
+                    <button class="abstract-toggle" onclick="toggleAbstract(this)">abstract</button>
+                    <div class="abstract">
+                        We investigate the minimal degree of logarithmic vector fields associated to line arrangements and establish bounds related to the combinatorial structure. We provide dynamical interpretation and characterize polynomial vector fields having an infinite number of invariant lines.
+                    </div>
+                </div>
+
+                <!-- Publication 2 -->
+                <div class="publication-item">
+                    <div class="publication-header">
+                        <div class="publication-number">2</div>
+                        <h3 class="publication-title">An arithmetic Zariski 4-tuple of twelve lines</h3>
+                    </div>
+                    <p class="publication-journal">Geom. Topol. 20, No. 1, 537-553 (2016)</p>
+                    <p style="color: var(--color-text-secondary); font-size: var(--font-size-sm); margin-bottom: var(--space-16);">DOI: <a href="https://doi.org/10.2140/gt.2016.20.537" target="_blank" style="color: var(--color-text-secondary); text-decoration: none;">10.2140/gt.2016.20.537</a></p>
+                    <button class="abstract-toggle" onclick="toggleAbstract(this)">abstract</button>
+                    <div class="abstract">
+                        Using the I-invariant, we differentiate four arrangements with the same combinatorial information but in different deformation classes. From these arrangements, we construct four other arrangements such that there is no orientation-preserving homeomorphism between them. Furthermore, some pairs of arrangements among this 4-tuple form new arithmetic Zariski pairs.
+                    </div>
+                </div>
+
+                    <!-- Publication 1 - OLDEST -->
+                    <div class="publication-item">
+                        <div class="publication-header">
+                            <div class="publication-number">1</div>
+                            <h3 class="publication-title">On complex line arrangements and their boundary manifolds</h3>
+                        </div>
+                        <p class="publication-authors">with V. Florens, M. A. Marco-Buzunariz</p>
+                        <p class="publication-journal">Math. Proc. Camb. Philos. Soc. 159, No. 2, 189-205 (2015)</p>
+                        <button class="abstract-toggle" onclick="toggleAbstract(this)">abstract</button>
+                        <div class="abstract">
+                            We study complex line arrangements and investigate the topological properties of their boundary manifolds, establishing connections between combinatorial data and three-dimensional topology.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Theses Section -->
+            <div class="preprints-section">
+                <h3 style="font-family: var(--font-family-elegant); font-size: var(--font-size-2xl); color: var(--color-black); margin-bottom: var(--space-32); text-align: left; margin-top: var(--space-48);">Theses</h3>
+                <div class="contact-info" style="margin-top: var(--space-24); text-align: center;">
+                    <div style="margin-bottom: var(--space-20);">
+                        <p style="font-size: var(--font-size-lg); margin-bottom: var(--space-4);"><a href="PhD - Guerville-Ballé.pdf" target="_blank" class="thesis-title-link">PhD Thesis:</a><br>"Topological invariants of line arrangements" (December 2013)</p>
+                    </div>
+                    <div style="margin-bottom: var(--space-24);">
+                        <p style="font-size: var(--font-size-lg); margin-bottom: var(--space-4);"><a href="HDR - Guerville-Ballé.pdf" target="_blank" class="thesis-title-link">HDR Thesis:</a><br>"A stroll through the topology of line arrangements and their moduli spaces" (December 2023)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Other Section -->
+        <section id="other" class="content-section">
+            <h2 class="section-title">Other</h2>
+            <div style="text-align: center; color: var(--color-text-secondary); padding: var(--space-32);">
+                <p>This section is ready for future content.</p>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Mobile menu toggle
+        const navToggle = document.getElementById('nav-toggle');
+        const navMenu = document.getElementById('nav-menu');
+
+        navToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Abstract toggle functionality
+        function toggleAbstract(button) {
+            const abstract = button.nextElementSibling;
+            if (abstract.classList.contains('show')) {
+                abstract.classList.remove('show');
+                button.textContent = 'abstract';
+            } else {
+                abstract.classList.add('show');
+                button.textContent = 'hide abstract';
+            }
+        }
+
+        // Navbar scroll effect removed - menu color stays constant
+
+        // Parallax effect for banner
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const banner = document.querySelector('.banner');
+            const rate = scrolled * -0.5;
+            banner.style.transform = `translate3d(0, ${rate}px, 0)`;
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const navHeight = document.querySelector('.navbar').offsetHeight;
+                    const targetPosition = target.offsetTop - navHeight;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Add intersection observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all publication items for animations
+        document.querySelectorAll('.publication-item').forEach(item => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(30px)';
+            item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(item);
+        });
+
+        // Observe content sections
+        document.querySelectorAll('.content-section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
 </body>
 </html>
-
